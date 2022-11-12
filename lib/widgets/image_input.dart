@@ -17,19 +17,23 @@ class _ImageInputState extends State<ImageInput> {
   File? _storedImage;
 
   void _takePicture() async {
-    final ImagePicker _picker = ImagePicker();
+    try {
+      final ImagePicker _picker = ImagePicker();
 
-    XFile imageFile = await _picker.pickImage(
-        source: ImageSource.camera, maxWidth: 600) as XFile;
+      XFile imageFile = await _picker.pickImage(
+          source: ImageSource.camera, maxWidth: 600) as XFile;
 
-    setState(() => _storedImage = File(imageFile.path));
+      setState(() => _storedImage = File(imageFile.path));
 
-    final appDir = await syspaths.getApplicationDocumentsDirectory();
+      final appDir = await syspaths.getApplicationDocumentsDirectory();
 
-    String fileName = path.basename(_storedImage!.path);
-    final savedImage = await _storedImage!.copy('${appDir.path}/$fileName');
+      String fileName = path.basename(_storedImage!.path);
+      final savedImage = await _storedImage!.copy('${appDir.path}/$fileName');
 
-    widget.onSelectImage(savedImage);
+      widget.onSelectImage(savedImage);
+    } catch (_) {
+      return;
+    }
   }
 
   @override

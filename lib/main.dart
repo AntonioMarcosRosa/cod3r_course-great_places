@@ -1,4 +1,5 @@
 import 'package:cod3r_course_great_places/providers/great_places.dart';
+import 'package:cod3r_course_great_places/screens/place_detail_screen.dart';
 import 'package:cod3r_course_great_places/screens/place_form_screen.dart';
 import 'package:cod3r_course_great_places/screens/places_list_screen.dart';
 import 'package:cod3r_course_great_places/utils/app_routes.dart';
@@ -28,6 +29,7 @@ class GreatPlacesApp extends StatelessWidget {
         home: const PlacesListScreen(),
         routes: {
           AppRoutes.placeForm: (context) => const PlaceFormScreen(),
+          AppRoutes.placeDetail: (context) => const PlaceDatailScreen(),
         },
       ),
     );

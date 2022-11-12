@@ -17,7 +17,11 @@ class GreatPlaces with ChangeNotifier {
               id: place['id'],
               title: place['title'],
               image: File(place['image']),
-              location: null,
+              location: PlaceLocation(
+                latitude: place['latitude'],
+                longitude: place['longitude'],
+                address: place['address'],
+              ),
             ))
         .toList();
     notifyListeners();
@@ -55,6 +59,9 @@ class GreatPlaces with ChangeNotifier {
         'id': newPlace.id,
         'title': newPlace.title,
         'image': newPlace.image.path,
+        'latitude': position.latitude,
+        'longitude': position.longitude,
+        'address': address,
       },
     );
 
